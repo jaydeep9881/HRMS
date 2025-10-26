@@ -1,5 +1,6 @@
 package com.hrms.hrms.employee.model;
 
+import com.hrms.hrms.department.model.Department;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -37,8 +38,8 @@ public class Employee {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @NotBlank(message = "Department is required")
-    private String department;
+//    @NotBlank(message = "Department is required")
+//    private String department;
 
     @NotBlank(message = "Role is required")
     private String role;
@@ -54,6 +55,10 @@ public class Employee {
     private LocalDateTime createdAt ;
 
     private LocalDateTime updatedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     @PrePersist
     public void prePersist(){
