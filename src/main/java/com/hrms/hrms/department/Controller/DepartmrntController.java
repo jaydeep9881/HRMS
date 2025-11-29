@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,16 @@ class DepartmentController {
     public ResponseEntity<Department> addDepartment(@RequestBody Department departmentRequest) {
          Department department = departmentService.addDepartment(departmentRequest);
         return ResponseEntity.ok(department);
+    }
+    @PutMapping("/department/{id}")
+    public ResponseEntity<Department> updateDepartment(@PathVariable Long id,@RequestBody Department department){
+        Department department1=departmentService.updateDepartment(id,department);
+        return ResponseEntity.ok(department1);
+    }
+    @DeleteMapping("/department/{id}")
+    public ResponseEntity<String> deleteDepartment(@PathVariable Long id) {
+        // Implementation for deleting a department can be added here
+        departmentService.deleteDepartment(id);
+        return ResponseEntity.ok("Department deleted successfully");
     }
 }

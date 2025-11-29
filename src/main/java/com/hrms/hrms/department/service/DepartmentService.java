@@ -20,4 +20,20 @@ public class DepartmentService {
         Department department = departmentRepo.save(departmentRequest);
     return department;
     }
+
+    public Department updateDepartment(Long id, Department department) {
+        Department existingDepartment = departmentRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
+        existingDepartment.setName(department.getName());
+        return departmentRepo.save(existingDepartment);
+
+    }
+
+    public void deleteDepartment(Long id) {
+        if (!departmentRepo.existsById(id)) {
+            throw new RuntimeException("Deparment not found with id: " + id);
+        }
+        departmentRepo.deleteById(id);
+
+    }
 }
