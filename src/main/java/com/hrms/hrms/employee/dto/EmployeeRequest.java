@@ -36,4 +36,5 @@ public class EmployeeRequest {
     private LocalDate joiningDate;
 
     private Boolean isActive;
+    private Long departmentId;
 }

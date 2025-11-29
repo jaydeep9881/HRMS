@@ -12,6 +12,7 @@ public class EmployeeResponse {
     private String firstName;
     private String lastName;
     private String email;
+    private Long departmentId; // added department ID
     private String department;
     private String role;
     private Double salary;
