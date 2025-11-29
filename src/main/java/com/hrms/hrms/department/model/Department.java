@@ -25,17 +25,10 @@ public class Department {
     private Long id;
 
     @NotBlank(message = "Department name can not be null")
-    @UniqueElements
+    @Column(unique = true)
     private String name;
-
-    @OneToMany(mappedBy ="department" ,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Employee> employeeList= new ArrayList<>();
-
-
     private LocalDateTime createdAt ;
-
     private LocalDateTime updatedAt;
-
     @PrePersist
     public void prePersist(){
         createdAt = LocalDateTime.now();

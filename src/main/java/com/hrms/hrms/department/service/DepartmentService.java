@@ -1,5 +1,6 @@
 package com.hrms.hrms.department.service;
 
+import com.hrms.hrms.department.dto.DeopartmentRequest;
 import com.hrms.hrms.department.model.Department;
 import com.hrms.hrms.department.repositary.DepartmentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,5 +15,9 @@ public class DepartmentService {
     public List<Department> getAllDepartment() {
         List<Department> list=departmentRepo.findAll();
         return list;
+    }
+    public Department addDepartment(Department departmentRequest) {
+        Department department = departmentRepo.save(departmentRequest);
+    return department;
     }
 }
