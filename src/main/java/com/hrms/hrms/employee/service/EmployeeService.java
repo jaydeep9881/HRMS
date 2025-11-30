@@ -31,7 +31,6 @@ public class EmployeeService {
                 .lastName(employee.getLastName())
                 .email(employee.getEmail())
                 .departmentId(employee.getDepartment() != null ? employee.getDepartment().getId() : null)
-                .department(employee.getDepartment() != null ? employee.getDepartment().getName() : null)
                 .role(employee.getRole())
                 .salary(employee.getSalary())
                 .joiningDate(employee.getJoiningDate())
@@ -41,11 +40,9 @@ public class EmployeeService {
 
     // Convert EmployeeRequest DTO to Employee model
     private Employee mapToEmployee(EmployeeRequest request) {
-        Department department = null;
-        if (request.getDepartmentId() != null) {
-            department = departmentRepo.findById(request.getDepartmentId())
-                    .orElseThrow(() -> new RuntimeException("Department not found"));
-        }
+        Department department = departmentRepo.findById(request.getDepartmentId())
+                .orElseThrow(() -> new RuntimeException("Employee not found with id: " + request.getDepartmentId()));
+
 
         return Employee.builder()
                 .firstName(request.getFirstName())
@@ -81,16 +78,30 @@ public class EmployeeService {
                 .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
 
         // Apply updates from request
-        existingEmployee.setFirstName(request.getFirstName());
-        existingEmployee.setLastName(request.getLastName());
-        existingEmployee.setEmail(request.getEmail());
-        existingEmployee.setRole(request.getRole());
-        existingEmployee.setSalary(request.getSalary());
-        existingEmployee.setJoiningDate(request.getJoiningDate());
-        existingEmployee.setIsActive(request.getIsActive());
+        if( request.getFirstName() != null) {
+            existingEmployee.setFirstName(request.getFirstName());
+        }
+        if( request.getLastName() != null) {
+            existingEmployee.setLastName(request.getLastName());
+        }
+        if( request.getEmail() != null) {
+            existingEmployee.setEmail(request.getEmail());
+        }
+        if( request.getRole() != null) {
+            existingEmployee.setRole(request.getRole());
+        }
+        if( request.getSalary() != null) {
+            existingEmployee.setSalary(request.getSalary());
+        }
+        if( request.getJoiningDate() != null) {
+            existingEmployee.setJoiningDate(request.getJoiningDate());
+        }
+        if( request.getIsActive() != null) {
+            existingEmployee.setIsActive(request.getIsActive());
+        }
 
         // Update department
-        if (request.getDepartmentId() != null) {
+        if ( request.getDepartmentId()  != null) {
             Department department = departmentRepo.findById(request.getDepartmentId())
                     .orElseThrow(() -> new RuntimeException("Department not found"));
             existingEmployee.setDepartment(department);

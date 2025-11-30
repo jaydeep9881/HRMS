@@ -1,9 +1,6 @@
 package com.hrms.hrms.employee.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
 
@@ -23,8 +20,8 @@ public class EmployeeRequest {
     @NotBlank(message = "Email is required")
     private String email;
 
-    @NotBlank(message = "Department is required")
-    private String department;
+    private Long departmentId;
+
 
     @NotBlank(message = "Role is required")
     private String role;
@@ -36,5 +33,7 @@ public class EmployeeRequest {
     private LocalDate joiningDate;
 
     private Boolean isActive;
-    private Long departmentId;
+
+
+
 }
