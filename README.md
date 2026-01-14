@@ -1,4 +1,4 @@
-🧑‍💼 Human Resource Management System (HRMS)
+🧑‍💼 Staff Sync  (HRMS)
 
 A modular and scalable HRMS backend application built using Spring Boot, designed to streamline the management of employees, departments, roles, attendance, and leave within an organization.
 The system follows industry-standard architecture with DTO pattern, validation, Spring Security, and RESTful APIs for clean and maintainable code.
