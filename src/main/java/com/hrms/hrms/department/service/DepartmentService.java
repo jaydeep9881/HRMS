@@ -36,4 +36,9 @@ public class DepartmentService {
         departmentRepo.deleteById(id);
 
     }
+
+    public Department getDepartmentById(Long id) {
+        return departmentRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Department not found with id: " + id));
+    }
 }

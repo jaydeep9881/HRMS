@@ -16,6 +16,15 @@ class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
+    @GetMapping("/department/{id}")
+    public ResponseEntity<Department> getDepartmentById(@PathVariable Long id) {
+        Department department = departmentService.getDepartmentById(id);
+        if (department != null) {
+            return ResponseEntity.ok(department);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @GetMapping("/department")
     public ResponseEntity<List<Department>> getAllDepartment(){
         List<Department> departments=departmentService.getAllDepartment();
